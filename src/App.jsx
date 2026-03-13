@@ -17,6 +17,7 @@ function App() {
   const [user,setUser] = useState(null)
   const [token,setToken] = useState(localStorage.getItem('token') || '')
   const [message,setMessage] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
 
   const loadPrompts = async () => {
     try{
@@ -35,6 +36,7 @@ function App() {
       try{
         if(!token){
           setUser(null)
+          setIsLoading(false)
           return
         }
         const currentUser = await getMe(token)
@@ -44,9 +46,10 @@ function App() {
         setToken('')
         setUser(null)
       }
-
-      loadCurrentUser()
-    }}, [token])  
+      setIsLoading(false)
+    }
+    loadCurrentUser()
+  }, [token])  
 
   
 
