@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Auth_URL = import.meta.env.Auth_URL
+const Auth_URL = import.meta.env.VITE_AUTH_URL
 
 
 export const registerUser = async (userData) => {
